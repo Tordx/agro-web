@@ -1,0 +1,684 @@
+<div class="account-pages pt-2 pt-sm-5 pb-4 pb-sm-5">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-xxl-4 col-lg-5">
+        <div class="card">
+          <!-- Logo -->
+          <!-- <div class="card-header p-2 text-center bg-primary">
+                <a href="index.html">
+                  <span
+                    ><img src="assets/images/logo.png" alt="Logo" height="200"
+                  /></span>
+                </a>
+              </div> -->
+
+          <div class="card-body p-4">
+            <div class="text-center w-75 m-auto">
+              <h4 class="text-dark-50 text-center pb-0 fw-bold">Sign In</h4>
+              <!-- <p class="text-muted mb-4">
+                    Enter your email address and password to access admin panel.
+                  </p> -->
+            </div>
+
+            <form action="/web/authentication" role="form" method="POST">
+              <div class="mb-3">
+                <label for="emailaddress" class="form-label">Email address</label>
+                <input
+                  name="email"
+                  class="form-control"
+                  type="text"
+                  id="emailaddress"
+                  required=""
+                  placeholder="Enter your email"
+                />
+              </div>
+
+              <div class="mb-3">
+                <!-- <a
+                      href="#"
+                      class="text-muted float-end"
+                      data-bs-toggle="modal"
+                      data-bs-target="#pw-reset-modal"
+                    >
+                      <small>Forgot your password?</small>
+                    </a> -->
+                <label for="password" class="form-label">Password</label>
+                <div class="input-group input-group-merge">
+                  <input
+                    name="password"
+                    type="password"
+                    id="password"
+                    class="form-control"
+                    placeholder="Enter your password"
+                  />
+                  <div class="input-group-text" data-password="false">
+                    <span class="password-eye"></span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mb-3 mb-3">
+                <!-- <div class="form-check">
+                                            <input type="checkbox" class="form-check-input" id="checkbox-signin" checked>
+                                            <label class="form-check-label" for="checkbox-signin">Remember me</label>
+                                        </div> -->
+              </div>
+
+              <div class="mb-3 mb-0 text-center">
+                <button class="btn btn-primary" type="submit">Log In</button>
+                <!-- <p class="mt-3" data-bs-toggle="modal" data-bs-target="#signup-modal">
+                  <a href="#">Don't have an account?</a>
+                </p> -->
+                <p class="mt-3" data-bs-toggle="modal" data-bs-target="#farmer-signup-modal">
+                  <a href="#">Don't have an account??</a>
+                </p>
+              </div>
+            </form>
+          </div>
+          <!-- end card-body -->
+        </div>
+        <!-- end card -->
+
+        <!-- <div class="row mt-3">
+                            <div class="col-12 text-center">
+                                <p class="text-muted">Don't have an account? <a href="pages-register.html" class="text-muted ms-1"><b>Sign Up</b></a></p>
+                            </div>
+                        </div> -->
+        <!-- end row -->
+      </div>
+      <!-- end col -->
+    </div>
+    <!-- end row -->
+  </div>
+  <!-- end container -->
+</div>
+
+<!-- PASSWORD RESET MODAL -->
+<div id="pw-reset-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="text-center my-2">
+          <span><img src="/assets/images/logo-dark.png" alt="" height="100" /></span>
+        </div>
+        <div class="alert alert-primary" role="alert">A link will be send to your email to reset your password.</div>
+        <form action="/login" method="GET">
+          <div class="mb-3">
+            <label for="email">Email</label>
+            <input name="email" class="form-control" type="email" required />
+          </div>
+          <div class="mb-3 text-center">
+            <button class="btn btn-primary">Reset password</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SIGNUP MODAL -->
+<!-- <div id="signup-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body px-3 pt-3">
+        <form action="/signup" method="POST" enctype="multipart/form-data">
+          <div class="mb-3">
+            <label for="email">Username</label>
+            <input name="username" class="form-control" type="email" required />
+          </div>
+          <div class="mb-3">
+            <label for="email">Password</label>
+            <input name="password" class="form-control" type="password" required />
+          </div>
+          <div class="mb-3">
+            <label for="email">Confirm password</label>
+            <input name="confirm_password" class="form-control" type="password" required />
+          </div>
+          <div class="mb-3">
+            <label for="email">First name</label>
+            <input name="firstname" class="form-control" type="text" required />
+          </div>
+          <div class="mb-3">
+            <label for="email">Last name</label>
+            <input name="lastname" class="form-control" type="text" required />
+          </div>
+          <div class="mb-3">
+            <div class="row">
+              <div class="col-6">
+                <label for="email">Gender</label>
+                <select name="gender" class="form-select">
+                  <option value="Male" selected>Male</option>
+                  <option value="Female">Female</option>
+                </select>
+              </div>
+              <div class="col-6">
+                <label for="email">Birthday</label>
+                <input name="birthday" class="form-control" type="date" required />
+              </div>
+            </div>
+          </div>
+          <div class="mb-3">
+            <div class="row">
+              <div class="col-6">
+                <label for="civilStatus">Civil status</label>
+                <select name="civilStatus" class="form-select" required>
+                  <option value=""></option>
+                  <option value="Single">Single</option>
+                  <option value="Married">Married</option>
+                  <option value="Separated">Separated</option>
+                </select>
+              </div>
+              <div class="col-6">
+                <label for="phoneNumber">Phone number</label>
+                <input name="phoneNumber" class="form-control" type="text" required />
+              </div>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <h5>Address</h5>
+            <div class="row">
+              <div class="col-6">
+                <label for="region">Region</label>
+                <input name="region" class="form-control" type="text" required />
+              </div>
+              <div class="col-6">
+                <label for="municipality">Municipality</label>
+                <input name="municipality" class="form-control" type="text" required />
+              </div>
+
+              <div class="col-6">
+                <label for="barangay">Barangay</label>
+                <input name="barangay" class="form-control" type="text" required />
+              </div>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <h5>Farm land description</h5>
+            <div class="row">
+              <div class="col-6">
+                <label for="farmArea">Total farm area</label>
+                <input name="farmArea" class="form-control" type="text" required />
+              </div>
+              <div class="col-6">
+                <label for="hectares">Hectares</label>
+                <input name="hectares" class="form-control" type="text" required />
+              </div>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <hr />
+            <label for="farmArea">Farm owner</label>
+            <br />
+            <input name="registeredOwner" type="radio" value="registered owner" class="me-1" /><label for="html">
+              Registered owner
+            </label>
+            <br />
+            <input name="registeredOwner" type="radio" value="" class="me-1" />
+            <label for="html">Others:</label>
+            <input name="registeredOwner2" class="form-control" type="text" value="" />
+            <hr />
+          </div>
+
+          <div class="mb-3">
+            <h5>Main livelihood</h5>
+            <div class="row">
+              <div class="col-md-6 col-sm-12">
+                <label for="farmArea">For farmer</label><br />
+                <input type="checkbox" name="rice" value="rice" class="me-1" /><label for="html"> Rice </label>
+                <br />
+                <input type="checkbox" name="corn" value="corn" class="me-1" /><label for="html"> Corn </label>
+                <br />
+                <input type="checkbox" class="me-1" /><label for="html">Others:</label>
+                <input name="forFarmerOthers" class="form-control" type="text" value="" />
+                <br />
+              </div>
+              <div class="col-md-6 col-sm-12">
+                <label for="farmArea">Farm worker</label><br />
+                <input type="checkbox" name="harvesting" value="harvesting" class="me-1" /><label for="html">
+                  Harvesting
+                </label>
+                <br />
+                <input type="checkbox" name="landPreparation" value="land preparation" class="me-1" /><label for="html">
+                  Land preparation
+                </label>
+                <br />
+                <input type="checkbox" class="me-1" /><label for="html">Others:</label>
+                <input name="farmWorkerOthers" class="form-control" type="text" value="" />
+                <br />
+              </div>
+            </div>
+            <hr />
+          </div>
+
+          <div class="mb-3">
+            <label for="profile_img">Profile photo</label>
+            <input name="profile_img" accept=".png,.jpg,.jpeg" class="form-control" type="file" />
+          </div>
+
+          <div class="mb-3 border p-2">
+            <div class="mb-3">
+              <label for="farm_address">Farm address</label>
+              <input name="farm_address" class="form-control" type="text" required />
+            </div>
+            <div class="mb-3">
+              <label for="commonity">Commonity</label>
+              <input name="commonity" class="form-control" id="commonity" required />
+            </div>
+            <div class="mb-3">
+              <label for="species">Species</label>
+              <input name="species" class="form-control" required id="species" />
+            </div>
+          </div>
+
+          <div class="mb-3 text-center">
+            <button class="btn btn-primary">Sign up</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<!-- end page -->
+
+<!-- FARMER MODAL -->
+<div id="farmer-signup-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body px-3 pt-3">
+        <form action="/signup" method="POST" enctype="multipart/form-data">
+          <label>Part 1 : Personal Information</label>
+          <div class="mb-3">
+            <label for="email">First Name</label>
+            <input name="firstname" class="form-control" type="email" required />
+          </div>
+          <div class="mb-3">
+            <label for="email">Middle Name</label>
+            <input name="middlename" class="form-control" type="password" required />
+          </div>
+          <div class="mb-3">
+            <label for="email">Last Name</label>
+            <input name="lastname" class="form-control" type="password" required />
+          </div>
+          <div class="mb-3">
+            <h5>Address</h5>
+            <div class="row">
+              <div class="col-6">
+                <label for="region">Region</label>
+                <input name="region" class="form-control" type="text" required />
+              </div>
+              <div class="col-6">
+                <label for="region">Province</label>
+                <input name="region" class="form-control" type="text" required />
+              </div>
+              <div class="col-6">
+                <label for="municipality">Municipality</label>
+                <input name="municipality" class="form-control" type="text" required />
+              </div>
+
+              <div class="col-6">
+                <label for="barangay">Barangay</label>
+                <input name="barangay" class="form-control" type="text" required />
+              </div>
+              <div class="col-6">
+                <label for="barangay">Street</label>
+                <input name="barangay" class="form-control" type="text" required />
+              </div>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="email">Contact Number</label>
+            <input name="lastname" class="form-control" type="text" required />
+          </div>
+          <div class="mb-3">
+            <label for="email">Person to notify in case of emergency</label>
+            <input name="lastname" class="form-control" type="text" required />
+          </div>
+          <div class="mb-3">
+            <label for="email">Religion</label>
+            <input name="lastname" class="form-control" type="text" required />
+          </div>
+          <div class="mb-3">
+            <div class="row">
+              <div class="col-6">
+                <label for="email">Gender</label>
+                <select name="gender" class="form-select">
+                  <option value="Male" selected>Male</option>
+                  <option value="Female">Female</option>
+                </select>
+              </div>
+              <div class="col-6">
+                <label for="email">Birthday</label>
+                <input name="birthday" class="form-control" type="date" required />
+              </div>
+            </div>
+          </div>
+          <div class="mb-3">
+            <div class="row">
+              <div class="col-6">
+                <label for="civilStatus">Civil status</label>
+                <select name="civilStatus" class="form-select" required>
+                  <option value="Single">Single</option>
+                  <option value="Married">Married</option>
+                  <option value="Separated">Separated</option>
+                </select>
+              </div>
+            </div>
+          </div>
+           <div class="mb-3">
+            <div class="row">
+              <div class="col-md-6 col-sm-12">
+                <label for="farmArea">4P’S Beneficiary </label><br />
+                <input type="checkbox" name="Yes" value="Yes" class="me-1" /><label for="html"> Yes </label>
+                <br />
+                <input type="checkbox" name="No" value="No" class="me-1" /><label for="html"> No </label>
+              </div>
+              <div class="col-md-6 col-sm-12">
+                <label for="farmArea">with Goverment Id</label><br />
+                <input type="checkbox" name="Yes" value="Yes" class="me-1" /><label for="html">
+                  Yes
+                </label>
+                <br />
+                <input type="checkbox" name="No" value="No" class="me-1" /><label for="html">
+                  No
+                </label>
+              </div>
+            </div>
+            <hr />
+          </div>
+          <div class="mb-3">
+            <div class="row">
+              <div class="col-md-6 col-sm-12">
+                <label for="farmArea">Member of indigenous group?</label><br />
+                <input type="checkbox" name="Yes" value="Yes" class="me-1" /><label for="html"> Yes </label>
+                <br />
+                <input type="checkbox" name="No" value="No" class="me-1" /><label for="html"> No </label>
+                <br />
+                <input type="checkbox" class="me-1" /><label for="html">If Yes Specify:</label>
+                <input name="forFarmerOthers" class="form-control" type="text" value="" />
+                <br />
+              </div>
+              <div class="col-md-6 col-sm-12">
+                <label for="farmArea">Member of any farmers association? </label><br />
+                <input type="checkbox" name="Yes" value="Yes" class="me-1" /><label for="html">
+                  Yes
+                </label>
+                <br />
+                <input type="checkbox" name="No" value="No" class="me-1" /><label for="html">
+                  No
+                </label>
+                <br />
+                <input type="checkbox" class="me-1" /><label for="html">If Yes Specify:</label>
+                <input name="farmWorkerOthers" class="form-control" type="text" value="" />
+                <br />
+              </div>
+            </div>
+            <hr />
+          </div>
+          <div class="mb-3">
+            <label>Part 2 : Farm Profile</label>
+            <div class="row">
+              <div class="col-md-6 col-sm-12">
+                <label for="farmArea">Main livelihood</label>
+                <br />
+                <input type="checkbox" name="farmers" value="farmers" class="me-1" /><label for="html"> farmers </label>
+                <br />
+                <input type="checkbox" name="farmers worker/laborer" value="farmers worker/laborer" class="me-1" /><label for="html"> farmers worker/laborer </label>
+                <br />
+                <input type="checkbox" name="fishfolk" value="fishfolk" class="me-1" /><label for="html"> fishfolk </label>
+                <br />
+              </div>
+              <div class="col-md-6 col-sm-12">
+                <label for="farmArea">For Farmers Only </label>
+                <br />
+                <input type="checkbox" name="rice" value="rice" class="me-1" />
+                <label for="html">
+                  rice
+                </label>
+                <br />
+                <input type="checkbox" name="corn" value="corn" class="me-1" />
+                <label for="html">
+                  corn
+                </label>
+                <br />
+                <input type="checkbox" name="othercrops" value="othercrops" class="me-1" />
+                <label for="html">
+                  other crop
+                </label>
+                <br />
+                <input type="checkbox" name="livestock" value="livestock" class="me-1" />
+                <label for="html">
+                  live stock
+                </label>
+                <br />
+                <input type="checkbox" class="me-1" />
+                <label for="html">
+                Specify Crop/Live/Poulty
+                </label>
+                <input name="specifycroplivestockpoultry" class="form-control" type="text" value="" />
+                <br />
+              </div>
+              <div class="col-md-6 col-sm-12">
+                <label for="farmArea">For Farm Worker Only </label>
+                <br />
+                <input type="checkbox" name="landpreparation" value="landpreparation" class="me-1" />
+                <label for="html">
+                  land preparation
+                </label>
+                <br />
+                <input type="checkbox" name="planting" value="planting" class="me-1" />
+                <label for="html">
+                  planting
+                </label>
+                <br />
+                <input type="checkbox" name="cultivation" value="cultivation" class="me-1" />
+                <label for="html">
+                  cultivation
+                </label>
+                <br />
+                <input type="checkbox" name="harvesting" value="harvesting" class="me-1" />
+                <label for="html">
+                  harvesting
+                </label>
+                <br />
+                <input type="checkbox" class="me-1" />
+                <label for="html">
+                 specify other:
+                </label>
+                <input name="specify" class="form-control" type="text" value="" />
+                <br />
+              </div>
+              <div class="col-md-6 col-sm-12">
+                <label for="farmArea">For FishFolk Only </label>
+                <br />
+                <input type="checkbox" name="FishCapture" value="FishCapture" class="me-1" />
+                <label for="html">
+                  fish capture
+                </label>
+                <br />
+                <input type="checkbox" name="aquaculture" value="aquaculture" class="me-1" />
+                <label for="html">
+                  aquaculture
+                </label>
+                <br />
+                <input type="checkbox" name="gleaning" value="gleaning" class="me-1" />
+                <label for="html">
+                  gleaning
+                </label>
+                <br />
+                <input type="checkbox" name="fishprocessing" value="fishprocessing" class="me-1" />
+                <label for="html">
+                  fish processing
+                </label>
+                <br />
+                <input type="checkbox" class="me-1" />
+                <label for="html">
+                 specify other:
+                </label>
+                <input name="specify" class="form-control" type="text" value="" />
+                <br />
+              </div>
+            </div>
+            <hr />
+          </div>
+          <div class="mb-3">
+            <label for="email">Part 3 : Farm and Land Description</label>
+          </div>
+          <div class="mb-3">
+            <label for="email">Location (barangay & municipality)</label>
+            <input name="username" class="form-control" type="email" required />
+          </div>
+          <div class="mb-3">
+            <label for="email">Total farm area </label>
+            <input name="totalfarmarea" class="form-control" type="text" required />
+          </div>
+          <div class="mb-3">
+            <label for="email">Owner document no:</label>
+            <input name="ownmerdocumentno" class="form-control" type="text" required />
+          </div>
+          <div class="mb-3">
+            <label for="email">Name of Owner</label>
+            <input name="firstname" class="form-control" type="text" required />
+          </div>
+          <div class="col-md-6 col-sm-12">
+            <label for="farmArea">Type of Farming Arrangement </label>
+            <br />
+            <input type="checkbox" name="FishCapture" value="FishCapture" class="me-1" />
+            <label for="html">
+              registered owner
+            </label>
+            <br />
+            <input type="checkbox" name="aquaculture" value="aquaculture" class="me-1" />
+            <label for="html">
+              tenant
+            </label>
+            <br />
+            <label for="html">
+              specify arrangement:
+             </label>
+             <input name="specify" class="form-control" type="text" value="" />
+          </div>
+          <br/>
+          <label for="email">Skip this is you only have 1 farm</label>
+          <div class="mb-3">
+            <label for="email">Location (barangay & municipality)</label>
+            <input name="username" class="form-control" type="email" required />
+          </div>
+          <div class="mb-3">
+            <label for="email">Total farm area </label>
+            <input name="totalfarmarea" class="form-control" type="text" required />
+          </div>
+          <div class="mb-3">
+            <label for="email">Owner document no:</label>
+            <input name="ownmerdocumentno" class="form-control" type="text" required />
+          </div>
+          <div class="mb-3">
+            <label for="email">Name of Owner</label>
+            <input name="firstname" class="form-control" type="text" required />
+          </div>
+          <div class="col-md-6 col-sm-12">
+            <label for="farmArea">Type of Farming Arrangement </label>
+            <br />
+            <input type="checkbox" name="FishCapture" value="FishCapture" class="me-1" />
+            <label for="html">
+              registered owner
+            </label>
+            <br />
+            <input type="checkbox" name="aquaculture" value="aquaculture" class="me-1" />
+            <label for="html">
+              tenant
+            </label>
+            <br />
+            <label for="html">
+              specify arrangement:
+             </label>
+             <input name="specify" class="form-control" type="text" value="" />
+          </div>
+          <br/>
+            <label for="email">OWNERSHIP DOCUMENT</label>
+          <div class="radio">
+            <input type="radio" id="agricultureSalesPatent" name="farmType" value="Agriculture sales patent">
+            <label for="agricultureSalesPatent">Certificate of land transfer</label>
+          </div>
+          <div class="radio">
+            <input type="radio" id="homesteadPatent" name="farmType" value="Homestead patent">
+            <label for="homesteadPatent">Emancipation Patent Upland</label>
+          </div>
+          <div class="radio">
+            <input type="radio" id="irrigated" name="farmType" value="Irrigated">
+            <label for="irrigated">Individial CERTIFICATE OF LAND OWNERSHIP AWARD (CLOA)</label>
+          </div>
+          <div class="radio">
+            <input type="radio" id="rainfedUpland" name="farmType" value="Rainfed upland">
+            <label for="rainfedUpland">Collective CLOA</label>
+          </div>
+          <div class="radio">
+            <input type="radio" id="rainfedUpland" name="farmType" value="Rainfed upland">
+            <label for="rainfedUpland">Co-ownership CLOA</label>
+          </div>
+          <div class="radio">
+            <input type="radio" id="rainfedUpland" name="farmType" value="Rainfed upland">
+            <label for="rainfedUpland">Agriculture sales patent</label>
+          </div>
+          <div class="radio">
+            <input type="radio" id="rainfedUpland" name="farmType" value="Rainfed upland">
+            <label for="rainfedUpland">Free patent</label>
+          </div>
+          <div class="radio">
+            <input type="radio" id="rainfedUpland" name="farmType" value="Rainfed upland">
+            <label for="rainfedUpland">Certificate of title or regular Title</label>
+          </div>
+          <div class="radio">
+            <input type="radio" id="rainfedUpland" name="farmType" value="Rainfed upland">
+            <label for="rainfedUpland">Certificate of ancestral domain title</label>
+          </div>
+          <div class="radio">
+            <input type="radio" id="rainfedUpland" name="farmType" value="Rainfed upland">
+            <label for="rainfedUpland">Certificate of ancestral land title</label>
+          </div>
+          <div class="radio">
+            <input type="radio" id="rainfedUpland" name="farmType" value="Rainfed upland">
+            <label for="rainfedUpland">Rainfed upland</label>
+          </div>
+
+          <br/>
+            <label for="email">FARM TYPE</label>
+          <div class="radio">
+            <input type="radio" id="agricultureSalesPatent" name="farmType" value="Agriculture sales patent">
+            <label for="agricultureSalesPatent">Irrigated</label>
+          </div>
+          <div class="radio">
+            <input type="radio" id="homesteadPatent" name="farmType" value="Homestead patent">
+            <label for="homesteadPatent">Rainfed</label>
+          </div>
+          <div class="mb-3 text-center">
+            <button class="btn btn-primary">Sign up</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- end page -->
+
+<!-- bundle -->
+
+<script src="assets/js/vendor.min.js"></script>
+<script src="assets/js/app.min.js"></script>
+
+<script>
+  var commonity = document.getElementById("commonity");
+  var species = document.getElementById("species");
+  new Tagify(commonity);
+  new Tagify(species);
+</script>

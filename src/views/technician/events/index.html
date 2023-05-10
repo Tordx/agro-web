@@ -1,0 +1,35 @@
+<div class="wrapper">
+  {{> technician-sidenav activitiesNav=true}}
+  <div class="content-page">
+    <div class="content">
+      {{> technician-topnav}}
+
+      <div class="container-fluid">
+        <div class="card mt-5 p-3">
+          <div class="table-responsive">
+            <table class="table table-centered table-striped dt-responsive nowrap w-100" id="data-datatable">
+              <thead class="table-light">
+                <tr>
+                  <th>Name</th>
+                  <th>Description</th>
+                  <th>Start date</th>
+                  <th>End date</th>
+                </tr>
+              </thead>
+              <tbody>
+                {{#each events}}
+                <tr>
+                  <td><img src="{{picture}}" class="rounded me-3" height="64" /> {{name}}</td>
+                  <td>{{description}}</td>
+                  <td>{{moment startDate 'MMM DD YYYY'}}</td>
+                  <td>{{moment endDate 'MMM DD YYYY'}}</td>
+                </tr>
+                {{/each}}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

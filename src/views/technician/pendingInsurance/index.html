@@ -1,0 +1,124 @@
+<div class="wrapper">
+  {{> technician-sidenav pendingInsuranceNav=true}}
+  <div class="content-page">
+    <div class="content">
+      {{> technician-topnav}}
+
+      <div class="container-fluid">
+        <div class="card mt-5 p-3">
+          <div class="table-responsive">
+            <table class="table table-centered table-striped dt-responsive nowrap w-100" id="data-datatable">
+              <thead class="table-light">
+                <tr>
+                  <th>Insurance name</th>
+                  <th>Insurance description</th>
+                  <th>Insurance date</th>
+                  <th>Name</th>
+                  <th>Gender</th>
+                  <th>Birthday</th>
+                  <th>Phone number</th>
+                  <th>Address</th>
+                  <th>Beneficiary</th>
+                  <th>Amount of cover</th>
+                  <th>Planting calendar</th>
+                  <th>Varity</th>
+                  <th>Commonity</th>
+                  <th>Species</th>
+                  <th>Status</th>
+                  <th>Acion</th>
+                </tr>
+              </thead>
+              <tbody>
+                {{#each farmers}}
+                <tr>
+                  <td>{{eventId.name}}</td>
+                  <td>{{eventId.description}}</td>
+                  <td>{{moment eventId.startDate 'MM/DD/YYYY'}} - {{moment eventId.endDate 'MM/DD/YYYY'}}</td>
+                  <td>{{firstname}} {{lastname}}</td>
+                  <td>{{gender}}</td>
+                  <td>{{birthday}}</td>
+                  <td>{{phoneNumber}}</td>
+                  <td>{{address}}</td>
+                  <td>{{beneficiary}}</td>
+                  <td>{{amountOfCover}}</td>
+                  <td>Sowing/os: {{sowing}}, Tp/planting: {{tp}}, Harvest: {{harvest}}</td>
+                  <td>{{varity}}</td>
+                  <td>{{farmerId.farm.commonity}}</td>
+                  <td>{{farmerId.farm.species}}</td>
+                  <td>
+                    <span class="badge badge-warning-lighten">{{status}}</span>
+                  </td>
+                  <td>
+                    <a
+                      onclick="updateInsuranceStatus('declined', '{{_id}}', '{{farmerId.firstname}}', '{{farmerId.lastname}}', '{{@index}}')"
+                      href="javascript:void(0);"
+                      class="action-icon"
+                    >
+                      <i class="mdi mdi-delete"></i
+                    ></a>
+                    <a
+                      onclick="updateInsuranceStatus('accepted', '{{_id}}','{{farmerId.firstname}}', '{{farmerId.lastname}}', '{{@index}}')"
+                      href="javascript:void(0);"
+                      class="action-icon"
+                    >
+                      <i class="mdi dripicons-checkmark"></i
+                    ></a>
+                  </td>
+                </tr>
+                {{/each}}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  //FETCH
+
+  //UPDATE STATUS
+  function updateInsuranceStatus(type, farmerId, firstname, lastname, index) {
+    let tempType = "Accept";
+    if (type != "accepted") tempType = "Decline";
+
+    Swal.fire({
+      title: `Are you sure?`,
+      text: `You want to ${tempType} ${firstname} ${lastname}`,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: `Yes, ${tempType} it!`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetchFarmerStatus(farmerId, type, index, tempType);
+      }
+    });
+  }
+
+  function fetchFarmerStatus(insuranceId, status, index, tempType) {
+    const body = {
+      insuranceId,
+      status,
+    };
+    $.ajax({
+      type: "POST",
+      url: "/technician/update-insurance-status",
+      dataType: "json",
+      contentType: "application/json",
+      data: JSON.stringify(body),
+      success: function (res) {
+        Swal.fire(
+          `${tempType == "Accept" ? "Accepted" : "Declined"}`,
+          `Successfully ${tempType == "Accept" ? "Accepted" : "Declined"}`,
+          "success"
+        );
+        document.getElementById("data-datatable").deleteRow(index + 1);
+      },
+    }).fail(function (res) {
+      Swal.fire(`Error`, `Please try again`, "error");
+    });
+  }
+</script>

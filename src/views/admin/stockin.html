@@ -1,0 +1,168 @@
+<div class="wrapper">
+  {{> admin-sidenav stockIn=true}}
+  <div class="content-page">
+    <div class="content">
+      {{> admin-topnav}}
+
+      <!-- Start Content-->
+      <div class="container-fluid">
+        <div class="card mt-5 p-3">
+          <div class="row">
+            <div class="col-sm-12">
+              <button
+                class="btn btn-success btn-sm mb-2 mx-1"
+                data-bs-toggle="modal"
+                data-bs-toggle="modal"
+                data-bs-target="#add-product"
+              >
+                Add product
+              </button>
+
+              <button
+                class="btn btn-success btn-sm mb-2 mx-1"
+                data-bs-toggle="modal"
+                data-bs-toggle="modal"
+                data-bs-target="#add-stocks"
+              >
+                Add stocks
+              </button>
+            </div>
+          </div>
+          <div class="table-responsive">
+            <table class="table table-centered table-striped dt-responsive nowrap w-100" id="data-datatable">
+              <thead class="table-light">
+                <tr>
+                  <th>Name</th>
+                  <th>Date Added</th>
+                  <th>Type</th>
+                  <th>Qty</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {{#each products}}
+                <tr id="{{_id}}">
+                  <td>{{name}}</td>
+                  <td>{{moment this.createdAt 'MMMM DD, YYYY'}}</td>
+                  <td>{{type}}</td>
+                  <td>{{qty}}</td>
+                  <td>
+                    <a class="action-icon" data-bs-toggle="modal" data-bs-target="#update-product-{{_id}}">
+                      <i class="mdi mdi-square-edit-outline"></i>
+                    </a>
+                    <a class="action-icon" onclick="delete_data('/admin/stock-in/delete-product/','{{_id}}')">
+                      <i class="mdi mdi-delete"> </i>
+                    </a>
+                  </td>
+                </tr>
+                {{/each}}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- end row -->
+      </div>
+      <!-- container -->
+    </div>
+  </div>
+</div>
+
+<!-- ADD PRODUCT -->
+<div id="add-product" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <form action="/admin/stock-in/add-product" method="POST" enctype="multipart/form-data">
+          <div class="mb-3">
+            <label for="name" class="form-label">Product name</label>
+            <input type="text" name="name" class="form-control" required />
+          </div>
+
+          <div class="mb-3">
+            <label for="name" class="form-label">Type</label>
+            <input type="text" name="type" class="form-control" required />
+          </div>
+
+          <div class="mb-3">
+            <label for="name" class="form-label">Quantity</label>
+            <input type="number" name="qty" class="form-control" required />
+          </div>
+
+          <div class="mb-3 text-center">
+            <button class="btn btn-primary">Add Product</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+{{#each products}}
+<div id="update-product-{{_id}}" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <form action="/admin/stock-in/update-product" method="POST" enctype="multipart/form-data">
+          <input type="text" name="product_id" value="{{_id}}" hidden />
+
+          <div class="mb-3">
+            <label for="name" class="form-label">Product name</label>
+            <input type="text" name="name" class="form-control" value="{{name}}" required />
+          </div>
+
+          <div class="mb-3">
+            <label for="name" class="form-label">Type</label>
+            <input type="text" name="type" class="form-control" value="{{type}}" required />
+          </div>
+
+          <div class="mb-3">
+            <label for="name" class="form-label">Quantity</label>
+            <input type="number" name="qty" class="form-control" value="{{qty}}" required />
+          </div>
+
+          <div class="mb-3 text-center">
+            <button class="btn btn-primary">Update Product</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{{/each}}
+
+<!-- ADD STOCKS -->
+<div id="add-stocks" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <form action="/admin/stock-in/add-stocks" method="POST" enctype="multipart/form-data">
+          <div class="mb-3">
+            <label for="name" class="form-label">Select Product</label>
+            <select name="product_id" class="form-select" required>
+              <option value=""></option>
+              {{#each products}}
+              <option value="{{_id}}">{{name}}</option>
+              {{/each}}
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label for="name" class="form-label">Quantity</label>
+            <input type="number" name="qty" class="form-control" required />
+          </div>
+
+          <div class="mb-3 text-center">
+            <button class="btn btn-primary">Add stocks</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- third party js -->
+<script src="/assets/js/vendor/apexcharts.min.js"></script>
+<script src="/assets/js/vendor/jquery-jvectormap-1.2.2.min.js"></script>
+<script src="/assets/js/vendor/jquery-jvectormap-world-mill-en.js"></script>
+<!-- third party js ends -->

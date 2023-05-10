@@ -1,0 +1,50 @@
+<div class="wrapper">
+  {{> farmer-sidenav announcements=true}}
+  <div class="content-page">
+    <div class="content">
+      {{> farmer-topnav}}
+
+      <!-- Start Content-->
+      <div class="container-fluid p-2">
+        <!-- start page title -->
+        <div class="row">
+          <div class="col-12">
+            <div class="page-title-box">
+              <h4 class="page-title">{{toUpperCharAt credentials.type}}</h4>
+            </div>
+          </div>
+        </div>
+        <!-- end page title -->
+
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-body">
+                {{#if hasAnnouncements}} {{#each announcements}}
+                <div class="w-75 p-3 my-2 mx-auto border">
+                  <div class="row">
+                    <div class="col-3">
+                      <img src="{{this.picture}}" class="border img-fluid" alt="Announcement" />
+                    </div>
+                    <div class="col-9">
+                      <p class="text-end">
+                        {{moment this.createdAt 'MMM DD, YYYY'}} | {{moment this.createdAt 'hh:mm a'}}
+                      </p>
+                      <p class="mt-1">{{this.description}}</p>
+                    </div>
+                  </div>
+                </div>
+                {{/each}} {{else}} <h3 class="text-center">NO ANNOUNCEMENTS TODAY</h3> {{/if}}
+              </div>
+              <!-- end card-body-->
+            </div>
+            <!-- end card-->
+          </div>
+          <!-- end col -->
+        </div>
+        <!-- end row -->
+      </div>
+      <!-- container -->
+    </div>
+  </div>
+</div>

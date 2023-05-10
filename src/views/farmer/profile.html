@@ -1,0 +1,420 @@
+<div class="wrapper">
+  {{> farmer-sidenav}}
+  <div class="content-page">
+    <div class="content">
+      {{> farmer-topnav}}
+
+      <!-- Start Content-->
+      <div class="container-fluid">
+        <!-- start page title -->
+        <div class="row">
+          <div class="col-12">
+            <div class="page-title-box">
+              <div class="page-title-right"></div>
+              <h4 class="page-title">User profile</h4>
+            </div>
+          </div>
+        </div>
+        <!-- end page title -->
+        <div class="row">
+          <div class="col-xl-4 col-lg-5">
+            <div class="card text-center">
+              <div class="card-body">
+                <img
+                  src="{{credentials.profile_img}}"
+                  class="rounded-circle avatar-lg img-thumbnail"
+                  alt="profile-image"
+                />
+
+                <h4 class="mb-0 mt-2">{{credentials.firstname}} {{credentials.lastname}}</h4>
+                <p class="text-muted font-14">{{credentials.scope}}</p>
+
+                <button
+                  type="button"
+                  class="btn btn-success btn-sm mb-2"
+                  data-bs-toggle="modal"
+                  data-bs-target="#add-modal"
+                >
+                  Change profile
+                </button>
+
+                <button class="btn btn-success btn-sm mb-2" id="print-id-btn">
+                  <i class="mdi mdi-cloud-download"></i>
+                </button>
+
+                <div class="text-start mt-3">
+                  <!-- <p class="text-muted mb-2 font-13">
+                    <strong>Mobile :</strong
+                    ><span class="ms-2">{{credentials.phoneNumber}}</span>
+                  </p>
+
+                  <p class="text-muted mb-2 font-13">
+                    <strong>Email :</strong>
+                    <span class="ms-2">{{credentials.email}}</span>
+                  </p> -->
+                </div>
+              </div>
+              <!-- end card-body -->
+            </div>
+            <!-- end card -->
+          </div>
+          <!-- end col-->
+
+          <!-- ID CONTENT -->
+          <div id="id-content" style="display: none">
+            <div class="container">
+              <div class="row">
+                <div class="col-9">
+                  <h1>AGRO</h1>
+                  <h3>BUNAWAN AGUSAN DEL SUR</h3>
+                </div>
+                <div class="col-3">
+                  <img src="/assets/images/logo.png" height="150" alt="Logo" />
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-6">
+                  <img
+                    src="{{credentials.profile_img}}"
+                    alt="Profile"
+                    class="img-fluid rounded-circle border border-dark"
+                  />
+                </div>
+                <div class="col-6">
+                  <h2 class="mt-4">{{credentials.firstname}}</h2>
+                  <h2>{{credentials.lastname}}</h2>
+                  <h2>{{moment credentials.birthday 'MMM/DD/YYYY'}}</h2>
+                  <h4>{{credentials._id}}</h4>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xl-8 col-lg-7">
+            <div class="card">
+              <div class="card-body">
+                <form action="/farmer/profile/update" method="POST">
+                  <h5 class="mb-4 text-uppercase"><i class="mdi mdi-account-circle me-1"></i> Personal Info</h5>
+
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="mb-3">
+                        <label for="firstname" class="form-label">First Name</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="firstname"
+                          placeholder="Enter first name"
+                          name="firstname"
+                          value="{{credentials.firstname}}"
+                          required
+                        />
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="mb-3">
+                        <label for="lastname" class="form-label">Last Name</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="lastname"
+                          placeholder="Enter last name"
+                          name="lastname"
+                          value="{{credentials.lastname}}"
+                          required
+                        />
+                      </div>
+                    </div>
+                    <!-- end col -->
+                  </div>
+                  <!-- end row -->
+
+                  <div class="col-12">
+                    <div class="mb-3">
+                      <label for="farm_address" class="form-label">Farm address</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="farm_address"
+                        name="farm_address"
+                        value="{{credentials.farm.farm_address}}"
+                        required
+                      />
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="mb-3">
+                      <div class="row">
+                        <div class="col-6">
+                          <label for="civilStatus">Civil status</label>
+                          <select name="civilStatus" class="form-select" required>
+                            <option value="{{credentials.farm.civilStatus}}" selected hidden>
+                              {{credentials.farm.civilStatus}}
+                            </option>
+                            <option value="Single">Single</option>
+                            <option value="Married">Married</option>
+                            <option value="Separated">Separated</option>
+                          </select>
+                        </div>
+                        <div class="col-6">
+                          <label for="phoneNumber">Phone number</label>
+                          <input
+                            name="phoneNumber"
+                            class="form-control"
+                            type="text"
+                            required
+                            value="{{credentials.farm.phoneNumber}}"
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="mb-3">
+                      <h5>Address</h5>
+                      <div class="row">
+                        <div class="col-6">
+                          <label for="region">Region</label>
+                          <input
+                            name="region"
+                            class="form-control"
+                            type="text"
+                            required
+                            value="{{credentials.farm.region}}"
+                          />
+                        </div>
+                        <div class="col-6">
+                          <label for="municipality">Municipality</label>
+                          <input
+                            name="municipality"
+                            class="form-control"
+                            type="text"
+                            required
+                            value="{{credentials.farm.municipality}}"
+                          />
+                        </div>
+
+                        <div class="col-6">
+                          <label for="barangay">Barangay</label>
+                          <input
+                            name="barangay"
+                            class="form-control"
+                            type="text"
+                            required
+                            value="{{credentials.farm.barangay}}"
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="mb-3">
+                      <h5>Farm land description</h5>
+                      <div class="row">
+                        <div class="col-6">
+                          <label for="farmArea">Total farm area</label>
+                          <input
+                            name="farmArea"
+                            class="form-control"
+                            type="text"
+                            required
+                            value="{{credentials.farm.farmArea}}"
+                          />
+                        </div>
+                        <div class="col-6">
+                          <label for="hectares">Hectares</label>
+                          <input
+                            name="hectares"
+                            class="form-control"
+                            type="text"
+                            required
+                            value="{{credentials.farm.hectares}}"
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="mb-3">
+                      <hr />
+                      <label for="farmArea">Farm owner</label>
+                      <br />
+                      <!-- prettier-ignore -->
+                      <input name="registeredOwner" type="radio" value="registered owner"
+                      class="me-1" {{#ifCond credentials.farm.registeredOwner '==' "registered owner"}}
+                      checked="checked"
+                      {{/ifCond}}
+                       />
+                      <label for="html"> Registered owner </label>
+                      <br />
+                      <input name="registeredOwner" type="radio" value="" class="me-1" />
+                      <label for="html">Others:</label>
+                      <!-- prettier-ignore -->
+                      <input name="registeredOwner2" class="form-control" type="text"
+                      {{#ifCond credentials.farm.registeredOwner '==' "registered owner"}}{{else}} value="{{credentials.farm.registeredOwner}}"{{/ifCond}}
+                       />
+                      <hr />
+                    </div>
+
+                    <div class="mb-3">
+                      <h5>Main livelihood</h5>
+                      <div class="row">
+                        <div class="col-md-6 col-sm-12">
+                          <label for="farmArea">For farmer</label><br />
+                          <input
+                            type="text"
+                            name="farmersSelected"
+                            class="form-control"
+                            value="{{credentials.farm.farmersSelected}}"
+                          />
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                          <label for="farmArea">Farm worker</label><br />
+                          <input
+                            type="text"
+                            name="farmWorkerSelected"
+                            class="form-control"
+                            value="{{credentials.farm.farmWorkerSelected}}"
+                          />
+                        </div>
+                      </div>
+                      <hr />
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="mb-3">
+                        <label for="commonity" class="form-label">Commonity</label>
+                        <input class="form-control" id="commonity" name="commonity" required />
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="mb-3">
+                        <label for="species" class="form-label">Species</label>
+                        <input class="form-control" id="species" name="species" required />
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="mb-3">
+                        <label for="userpassword" class="form-label">Password</label>
+                        <input
+                          type="password"
+                          class="form-control"
+                          id="userpassword"
+                          placeholder="Enter password"
+                          name="password"
+                        />
+                        <span class="form-text text-muted">
+                          <small> If you want to change password please fillup the form </small>
+                        </span>
+                      </div>
+                    </div>
+                    <!-- end col -->
+                  </div>
+                  <!-- end row -->
+
+                  <div class="text-end">
+                    <button type="submit" class="btn btn-success mt-2">
+                      <i class="mdi mdi-content-save"></i> Update profile
+                    </button>
+                  </div>
+                </form>
+              </div>
+              <!-- end card body -->
+            </div>
+            <!-- end card -->
+          </div>
+          <!-- end col -->
+        </div>
+        <!-- end row -->
+      </div>
+      <!-- container -->
+    </div>
+  </div>
+</div>
+
+<div id="add-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body my-4">
+        <form action="/farmer/profile/upload" method="POST" enctype="multipart/form-data">
+          <div
+            class="col-sm-12 dropzone"
+            id="myAwesomeDropzone"
+            data-plugin="dropzone"
+            data-previews-container="#file-previews"
+            data-upload-preview-template="#uploadPreviewTemplate"
+          >
+            <center>
+              <img class="img-fluid" id="imageResult" src="{{credentials.profile_img}}" class="rounded-circle" />
+            </center>
+            <input
+              id="upload"
+              name="img"
+              type="file"
+              accept=".png,.jpg,.jpeg"
+              onchange="readURL(this);"
+              class="form-control border-0"
+            />
+          </div>
+          <div class="text-center mt-4">
+            <button class="btn btn-primary">Update profile</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  /*  ==========================================
+    SHOW UPLOADED IMAGE
+* ========================================== */
+  function readURL(input) {
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+
+      reader.onload = function (e) {
+        $("#imageResult").attr("src", e.target.result);
+        $("#imgdatainput").val(e.target.result);
+      };
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+
+  $(function () {
+    $("#upload").on("change", function () {
+      readURL(input);
+    });
+  });
+
+  /*  ==========================================
+    SHOW UPLOADED IMAGE NAME
+* ========================================== */
+  var input = document.getElementById("upload");
+  var infoArea = document.getElementById("upload-label");
+
+  input.addEventListener("change", showFileName);
+  function showFileName(event) {
+    var input = event.srcElement;
+    var fileName = input.files[0].name;
+    infoArea.textContent = "File name: " + fileName;
+  }
+</script>
+
+<script>
+  var commonity = document.getElementById("commonity");
+  var species = document.getElementById("species");
+  var commonityTags = new Tagify(commonity);
+  var speciesTags = new Tagify(species);
+
+  commonityTags.addTags("{{credentials.farm.commonity}}");
+  speciesTags.addTags("{{credentials.farm.species}}");
+</script>
+
+<script>
+  $("#print-id-btn").click(function (e) {
+    $("#id-content").css("display", "block");
+    var idContent = $("#id-content").clone();
+    $("body").empty().html(idContent);
+    window.print();
+    location.replace("/staff/pos");
+  });
+</script>

@@ -1,0 +1,68 @@
+<!-- ========== Left Sidebar Start ========== -->
+<div class="leftside-menu">
+  <!-- LOGO -->
+  <a href="index.html" class="logo text-center logo-light">
+    <span class="logo-lg">
+      <img src="/assets/images/logo.png" alt="" height="100" />
+    </span>
+    <span class="logo-sm">
+      <img src="/assets/images/logo_sm.png" alt="" height="100" />
+    </span>
+  </a>
+
+  <!-- LOGO -->
+  <a href="index.html" class="logo text-center logo-dark">
+    <span class="logo-lg">
+      <img src="/assets/images/logo-dark.png" alt="" height="16" />
+    </span>
+    <span class="logo-sm">
+      <img src="/assets/images/logo_sm_dark.png" alt="" height="16" />
+    </span>
+  </a>
+
+  <div class="h-100" id="leftside-menu-container" data-simplebar>
+    <!--- Sidemenu -->
+    <ul class="side-nav">
+      <li class="side-nav-item">
+        <a href="/technician/dashboard" class="side-nav-link {{#if dashboard}}customize-active{{/if}}">
+          <i class="uil-home-alt"></i>
+          <span> Dashboard</span>
+        </a>
+      </li>
+      <li class="side-nav-item">
+        <a href="/technician/farmer-accepted" class="side-nav-link {{#if acceptedFarmerNav}}customize-active{{/if}}">
+          <i class="mdi dripicons-user"></i>
+          <span> Accepted Farmer </span>
+        </a>
+      </li>
+      <li class="side-nav-item">
+        <a
+          href="/technician/insurance-pending"
+          class="side-nav-link {{#if pendingInsuranceNav}}customize-active{{/if}}"
+        >
+          <i class="mdi dripicons-user-group"></i>
+          <span> Insurance </span>
+        </a>
+      </li>
+      <li class="side-nav-item">
+        <a
+          href="/technician/insurance-accepted"
+          class="side-nav-link {{#if acceptedInsuranceNav}}customize-active{{/if}}"
+        >
+          <i class="mdi dripicons-checklist"></i>
+          <span> Accepted Insurance </span>
+        </a>
+      </li>
+      <li class="side-nav-item">
+        <a href="/technician/activities" class="side-nav-link {{#if activitiesNav}}customize-active{{/if}}">
+          <i class="mdi dripicons-calendar"></i>
+          <span> Activities </span>
+        </a>
+      </li>
+    </ul>
+    <!-- End Sidebar -->
+    <div class="clearfix"></div>
+  </div>
+  <!-- Sidebar -left -->
+</div>
+<!-- Left Sidebar End -->

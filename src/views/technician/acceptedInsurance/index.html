@@ -1,0 +1,48 @@
+<div class="wrapper">
+  {{> technician-sidenav acceptedInsuranceNav=true}}
+  <div class="content-page">
+    <div class="content">
+      {{> technician-topnav}}
+
+      <div class="container-fluid">
+        <div class="card mt-5 p-3">
+          <div class="table-responsive">
+            <table class="table table-centered table-striped dt-responsive nowrap w-100" id="data-datatable">
+              <thead class="table-light">
+                <tr>
+                  <th>Insurance name</th>
+                  <th>Insurance description</th>
+                  <th>Insurance date</th>
+                  <th>Name</th>
+                  <th>Address</th>
+                  <th>Commonity</th>
+                  <th>Species</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                {{#each farmers}}
+                <tr>
+                  <td>{{eventId.name}}</td>
+                  <td>{{eventId.description}}</td>
+                  <td>{{moment eventId.startDate 'MM/DD/YYYY'}} - {{moment eventId.endDate 'MM/DD/YYYY'}}</td>
+                  <td>
+                    <img src="{{farmerId.profile_img}}" class="rounded me-3" height="64" />
+                    {{farmerId.firstname}} {{farmerId.lastname}}
+                  </td>
+                  <td>{{farmerId.farm.farm_address}}</td>
+                  <td>{{farmerId.farm.commonity}}</td>
+                  <td>{{farmerId.farm.species}}</td>
+                  <td>
+                    <span class="badge bg-success">{{status}}</span>
+                  </td>
+                </tr>
+                {{/each}}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

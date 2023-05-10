@@ -1,0 +1,44 @@
+<div class="wrapper">
+  {{> technician-sidenav acceptedFarmerNav=true}}
+  <div class="content-page">
+    <div class="content">
+      {{> technician-topnav}}
+
+      <div class="container-fluid">
+        <div class="card mt-5 p-3">
+          <div class="table-responsive">
+            <table class="table table-centered table-striped dt-responsive nowrap w-100" id="data-datatable">
+              <thead class="table-light">
+                <tr>
+                  <th>Name</th>
+                  <th>Address</th>
+                  <th>Commonity</th>
+                  <th>Species</th>
+                  <th>Accepted date</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                {{#each farmers}}
+                <tr>
+                  <td>
+                    <img src="{{profile_img}}" class="rounded me-3" height="64" />
+                    {{firstname}} {{lastname}}
+                  </td>
+                  <td>{{farm.farm_address}}</td>
+                  <td>{{farm.commonity}}</td>
+                  <td>{{farm.species}}</td>
+                  <td>{{moment farm.approve_date 'MMM DD YYYY'}}</td>
+                  <td>
+                    <span class="badge bg-success">{{farm.status}}</span>
+                  </td>
+                </tr>
+                {{/each}}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

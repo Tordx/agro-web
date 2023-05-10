@@ -1,0 +1,152 @@
+<div class="wrapper">
+  {{> farmer-sidenav events=true}}
+  <div class="content-page">
+    <div class="content">
+      {{> farmer-topnav}}
+
+      <!-- Start Content-->
+      <div class="container-fluid p-2">
+        <!-- start page title -->
+        <div class="row">
+          <div class="col-12">
+            <div class="page-title-box">
+              <h4 class="page-title">{{toUpperCharAt credentials.type}}</h4>
+            </div>
+          </div>
+        </div>
+        <!-- end page title -->
+
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-body">
+                {{#each events}}
+                <div class="w-75 p-3 my-2 mx-auto border">
+                  <div class="row">
+                    <div class="col-3">
+                      <img src="{{this.picture}}" class="border img-fluid" alt="Announcement" />
+                    </div>
+                    <div class="col-9">
+                      <p class="text-end">
+                        {{moment this.createdAt 'MMM DD, YYYY'}} | {{moment this.createdAt 'hh:mm a'}}
+                      </p>
+                      <h4>{{this.name}}</h4>
+                      <p class="mt-1">{{this.description}}</p>
+                      <button type="button" class="btn btn-primary" onclick="applyInsurance('{{this._id}}')">
+                        Apply
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                {{/each}}
+              </div>
+              <!-- end card-body-->
+            </div>
+            <!-- end card-->
+          </div>
+          <!-- end col -->
+        </div>
+        <!-- end row -->
+      </div>
+      <!-- container -->
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<form action="/farmer/apply-insurance" method="post">
+  <div class="modal fade" id="applyInsuranceModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Insurance form</h5>
+        </div>
+        <div class="modal-body">
+          <input type="hidden" name="eventId" id="eventId" />
+          <div class="row">
+            <div class="col-sm-12 col-md-6">
+              <label class="form-label">First name</label>
+              <input class="form-control mb-2" type="text" required name="firstName" />
+            </div>
+            <div class="col-sm-12 col-md-6">
+              <label class="form-label">Middle name</label>
+              <input class="form-control mb-2" type="text" required name="middleName" />
+            </div>
+            <div class="col-sm-12 col-md-6">
+              <label class="form-label">Last name</label>
+              <input class="form-control mb-2" type="text" required name="lastName" />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12 col-md-6">
+              <label class="form-label">Gender</label>
+              <select class="form-control mb-2" required name="gender">
+                <option value=""></option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+              </select>
+            </div>
+            <div class="col-sm-12 col-md-6">
+              <label class="form-label">Civil status</label>
+              <select class="form-control mb-2" required name="civilStatus">
+                <option value=""></option>
+                <option value="single">Single</option>
+                <option value="married">Married</option>
+                <option value="separated">Separated</option>
+              </select>
+            </div>
+          </div>
+
+          <label class="form-label">Address</label>
+          <input class="form-control mb-2" type="text" required name="address" />
+
+          <div class="row">
+            <div class="col-sm-12 col-md-6">
+              <label class="form-label">Date of birth</label>
+              <input class="form-control mb-2" type="date" required name="birthday" />
+            </div>
+            <div class="col-sm-12 col-md-6">
+              <label class="form-label">Phone number</label>
+              <input class="form-control mb-2" type="text" name="phoneNumber" />
+            </div>
+          </div>
+
+          <label class="form-label">Beneficiary</label>
+          <input class="form-control mb-2" type="text" name="beneficiary" />
+          <label class="form-label">Amount of cover</label>
+          <input class="form-control mb-2" type="text" name="amountOfCover" />
+          <hr />
+          <h5>Planting calendar</h5>
+          <div class="row">
+            <div class="col-sm-12 col-md-6">
+              <label class="form-label">Sowing/os</label>
+              <input class="form-control mb-2" type="text" name="sowing" />
+            </div>
+            <div class="col-sm-12 col-md-6">
+              <label class="form-label">Tp/planting</label>
+              <input class="form-control mb-2" type="text" name="tp" />
+            </div>
+            <div class="col-sm-12 col-md-6">
+              <label class="form-label">Harvest</label>
+              <input class="form-control mb-2" type="text" name="harvest" />
+            </div>
+          </div>
+          <hr />
+          <label class="form-label">Varity</label>
+          <input class="form-control mb-2" type="text" name="varity" />
+        </div>
+        <div class="modal-footer">
+          <a class="btn btn-secondary" data-dismiss="modal">Close</a>
+          <button type="submit" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+
+<script>
+  function applyInsurance(insuranceId) {
+    $("#applyInsuranceModal").modal("show");
+    $("#eventId").val(insuranceId);
+  }
+</script>
